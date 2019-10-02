@@ -29,10 +29,10 @@ int main(int argc, char *argv[]) {
     numbercheck::FloatingPointChecker floatingPointChecker{};
 
     if (inputStreamString == "-") {
-        text = cin.readline();
+        getline(cin,text);
     }
 
-    cout << boolalpha << floatingPointChecker.check("123") << endl;
+    cout << boolalpha << floatingPointChecker.check(text) << endl;
 
     return 0;
 }

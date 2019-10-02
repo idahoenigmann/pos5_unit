@@ -4,8 +4,8 @@ project('00_template',
         meson_version: '>0.46',
         default_options : ['cpp_std=c++2a', 'warning_level=3', 'werror=true'])
 
-doctest_dir = include_directories('lib/doctest')
-inc_dir = include_directories('include')
+doctest_dir = include_directories(get_option('doctest'))
+inc_dir = include_directories(['include', get_option('resources')])
 src = ['src/main.cpp', 'src/asdf.cpp']
 
 executable('go',
