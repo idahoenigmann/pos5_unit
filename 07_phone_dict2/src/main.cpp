@@ -7,6 +7,8 @@
 #include "CLI11.hpp"
 #include "json.hpp"
 
+#include "sll.h"
+#include "Dictionary.h"
 #include "phone_dict.h"
 
 using namespace std;
@@ -44,7 +46,8 @@ int main(int argc, char *argv[]) {
     if (s.is_open() && !s.bad() && !s.fail()) {
         s >> phoneDict;
     } else {
-        throw runtime_error("file could not be opened.");
+        cout << "file " + file + " could not be opened" << endl;
+        exit(1);
     }
     s.close();
 
@@ -79,7 +82,8 @@ int main(int argc, char *argv[]) {
         t << phoneDict << endl;
         t.close();
     } else {
-        throw runtime_error("file could not be written.");
+        cout << "file " + file + " could not be written" << endl;
+        exit(1);
     }
 
     return 0;

@@ -7,8 +7,3 @@ option('doctest',
        type:'string',
        value: '/home/ida/Documents/5_Klasse/POS/resources/doctest',
        description: 'doctest')
-
-option('bfd_lib',
-       type:'string',
-       value: '/usr/lib/libbfd',
-       description: 'doctest')

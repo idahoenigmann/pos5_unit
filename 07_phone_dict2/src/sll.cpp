@@ -2,62 +2,78 @@
 // Created by ida on 28.11.19.
 //
 
-class List final {
-public:
-    ~List() {
-        while (root) {
-            while (curr->next->next) {
-                curr = curr->next;
-            }
-            delete curr->next;
-            curr->next = nullptr;
-        }
-        root = nullptr;
-    }
+#include <iostream>
 
-    bool set(string key, int value) {
-        if (root) {
-            Node* curr{root};
-            while(curr->right->key > key) {
-                curr = curr->right;
-            }
-            // curr->key must now be <= key
-            if (curr->key = key) {
+#include "sll.h"
+
+using namespace std;
+
+
+List::~List() {
+    Node* curr = root;
+    Node* next = root;
+    while (curr) {
+        next = curr->next;
+        delete curr;
+        curr = next;
+    }
+}
+
+bool List::set(string key, int value) {
+    if (root) {
+        Node* curr{root};
+        while(curr->next) {
+            if (curr->key == key) {
                 curr->value = value;
-            } else {
-                Node* next = curr->next;
-                curr->next = Node*(key, value);
-                curr->next->next = next;
+                return true;
             }
-        } else {
-            root = new Node(key, value);
-            return
+            curr = curr->next;
+        }
+        curr->next = new Node(key, value);
+    } else {
+        root = new Node(key, value);
+    }
+    return true;
+}
+
+bool List::search(string key, int& value) {
+    if (root) {
+        Node* curr = root;
+        while (curr) {
+            if (curr->key == key) {
+                value = curr->value;
+                return true;
+            }
+            curr = curr->next;
         }
     }
+    return false;
+}
 
-    bool search(string key, int& value) {
-
+bool List::remove(string key) {
+    if (root) {
+        Node* curr = root;
+        Node* last = curr;
+        while (curr) {
+            if (curr->key == key) {
+                last->next = curr->next;
+                delete curr;
+                return true;
+            }
+            last = curr;
+            curr = curr->next;
+        }
     }
+    return false;
+}
 
-    bool remove(string key) {
-
+void List::clear() {
+    Node* curr = root;
+    Node* next = root;
+    while (curr) {
+        next = curr->next;
+        delete curr;
+        curr = next;
     }
-
-    void clear() {
-
-    }
-
-private:
-    Node* root{nullptr};
-};
-
-struct Node {
-    Node(string key, int value) {
-        this->key = key;
-        this->value = value;
-    }
-
-    string key;
-    int value;
-    Node* next{};
-};
+    root = nullptr;
+}

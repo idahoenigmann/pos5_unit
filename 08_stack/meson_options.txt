@@ -1,0 +1,24 @@
+option('resources',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources',
+       description: 'all resources')
+
+option('doctest',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources/doctest',
+       description: 'doctest')
+
+option('spdlog_lib',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources/spdlog/build',
+       description: 'spdlog lib')
+
+option('spdlog_include',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources/spdlog/include',
+       description: 'spdlog include')
+
+option('fmt_lib',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources/fmt-6.0.0/build',
+       description: 'fmt_lib')

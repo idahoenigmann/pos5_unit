@@ -8,11 +8,12 @@
 #include <unordered_map>
 
 #include "sll.h"
+#include "Dictionary.h"
 
 namespace phone_dict{
     class PhoneDict {
     private:
-        std::unordered_map<std::string, int> dict{};
+        Dictionary dict{};
 
         friend std::ostream& operator<<(std::ostream&,const PhoneDict&);
         friend std::istream& operator>>(std::istream& is, PhoneDict& phoneDict);
