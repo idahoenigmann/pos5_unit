@@ -43,6 +43,7 @@ void stacks::Stack::clear() {
         delete curr;
         curr = next;
     }
+    top_ = nullptr;
 }
 
 bool stacks::Stack::empty() {

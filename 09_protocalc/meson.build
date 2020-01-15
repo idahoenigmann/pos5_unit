@@ -5,11 +5,13 @@ project('09_protocalc',
         default_options : ['cpp_std=c++2a', 'warning_level=3', 'werror=true'])
 
 subdir('stack')
+subdir('pystring')
+subdir('repl')
 
-inc_dir = include_directories(['include', get_option('resources')])
+inc_dir = include_directories(['include', get_option('resources'), get_option('magic_enum')])
 src = ['src/main.cpp']
 
 executable('calc',
            sources : src,
-           include_directories : [inc_dir, stack_inc_dir],
-           link_with: stack_lib)
+           include_directories : [inc_dir, stack_inc_dir, pystring_inc_dir, repl_inc_dir],
+           link_with: [stack_lib, pystring_lib, repl_lib])

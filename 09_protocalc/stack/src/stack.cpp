@@ -4,45 +4,31 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <memory>
 
 #include "stack.h"
 
 using namespace std;
 
-int& stacks::Stack::top() {
+double& stacks::Stack::top() {
     if (top_) {
         return top_->value;
     }
     throw domain_error("stack is empty");
 }
 
-int stacks::Stack::pop() {
+double stacks::Stack::pop() {
     if (!top_) {
         throw domain_error("stack is empty");
     }
-    Node* n{top_};
-    top_ = top_->next;
-    int val = n->value;
-    delete n;
-    return val;
+    unique_ptr<Node> n{move(top_)};
+    top_ = move(n->next);
+    return n->value;
 }
 
-void stacks::Stack::push(int x) {
-    Node* n = new Node{};
-    n->value = x;
-    Node* next{top_};
-    top_ = n;
-    top_->next = next;
-}
-
-void stacks::Stack::clear() {
-    stacks::Node* curr{top_};
-    stacks::Node* next{top_};
-    while (curr) {
-        next = curr->next;
-        delete curr;
-        curr = next;
-    }
+void stacks::Stack::push(double x) {
+    unique_ptr<Node> n {new Node{x, move(top_)}};
+    top_ = move(n);
 }
 
 bool stacks::Stack::empty() {
@@ -50,11 +36,11 @@ bool stacks::Stack::empty() {
 }
 
 std::ostream& stacks::operator<<(std::ostream& s, Stack& stack) {
-    Node* curr{stack.top_};
+    unique_ptr<Node> curr = move(stack.top_);
 
     while (curr) {
         s << curr->value << " ";
-        curr = curr->next;
+        curr = move(curr->next);
     }
     return s;
 }

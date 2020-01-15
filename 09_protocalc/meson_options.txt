@@ -7,3 +7,8 @@ option('doctest',
        type:'string',
        value: '/home/ida/Documents/5_Klasse/POS/resources/doctest',
        description: 'doctest')
+
+option('magic_enum',
+       type:'string',
+       value: '/home/ida/Documents/5_Klasse/POS/resources/magic_enum',
+       description: 'magic_enum')

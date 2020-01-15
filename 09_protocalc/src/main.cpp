@@ -4,9 +4,18 @@
 
 #include <iostream>
 
+#include "repl.h"
+#include "magic_enum.hpp"
 
 using namespace std;
 
 int main() {
-    return 0;
+    repl::Calc calc{};
+    try {
+        while (true) {
+            calc.eval(repl::input());
+        }
+    } catch (const exception& e) {
+        cout << "Error: " << e.what() << endl;
+    }
 }
