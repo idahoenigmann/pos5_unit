@@ -22,19 +22,19 @@ size_t Dictionary::hash(const unsigned char* str) {
     return hash % Dictionary::length;
 }
 
-auto Dictionary::begin() {
+vector<pair<string, int>>::iterator Dictionary::begin() {
     return vector.begin();
 }
 
-auto Dictionary::cbegin() {
+const vector<pair<string, int>>::iterator Dictionary::cbegin() {
     return vector.cbegin();
 }
 
-auto Dictionary::end() {
+vector<pair<string, int>>::iterator Dictionary::end() {
     return vector.end();
 }
 
-auto Dictionary::cend() {
+const vector<pair<string, int>>::iterator Dictionary::cend() {
     return vector.cend();
 }
 
@@ -69,6 +69,7 @@ auto& Dictionary::operator[](const std::string& s) {
 }
 
 auto Dictionary::clear() {
+    clear_();
     vector.clear();
 }
 

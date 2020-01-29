@@ -19,10 +19,10 @@ public:
         }
     }
 
-    auto begin();
-    auto cbegin();
-    auto end();
-    auto cend();
+    std::vector<std::pair<std::string, int>>::iterator begin();
+    const std::vector<std::pair<std::string, int>>::iterator cbegin();
+    std::vector<std::pair<std::string, int>>::iterator end();
+    const std::vector<std::pair<std::string, int>>::iterator cend();
     auto find(const std::string& s);
     auto erase(const std::string& s);
     auto clear();
